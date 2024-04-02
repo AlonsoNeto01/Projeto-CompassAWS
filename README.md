@@ -1,13 +1,23 @@
-1.  Parte prática:
+#Parte prática#
+
 Requisitos AWS:
+
+
+
 1-Gerar uma chave pública para acesso ao ambiente;
+
+
 
 1.1-Vá ao painel EC2/Rede e segurança/Pares de Chaves, no lado superior direito, clique e criar par de chaves.
  ![image](https://github.com/AlonsoNeto01/Projeto-CompassAWS/assets/164195128/d216be1d-3f15-43a1-b6af-2bf18520a985)
 
 1.2-Feita essa configuração, aperte no canto inferior “Criar par de chaves”.
 
+
+
 2-Criar 1 instância EC2 com o sistema operacional Amazon Linux 2 (Família t3.small, 16 GB SSD);
+
+
 
 2.1-No menu inicial, pesquise por EC2 e clique nele, vá na opção “instâncias” e no canto superior direito “Executar Instâncias”:
 
@@ -32,38 +42,53 @@ Requisitos AWS:
 
 2.9-Revise as configurações e clique em Executar Instância.
 
+
+
 3-Gerar 1 elastic IP e anexar à instância EC2;
+
+
 
 3.1-Na página do serviço EC2, no menu lateral esquerdo, em Rede e Segurança, clique em IPs elásticos:
 
 3.2-Clique em Alocar endereço IP elástico:
 
-3.3-Por padrão, o Grupo de borda de Rede já vem selecionado, assim como o Conjunto de endereços IPv4 públicos da Amazon: Clique em Alocar: 
+3.3 - Normalmente, o Grupo de Rede Edge é escolhido por padrão, juntamente com o Conjunto de Endereços IPv4 Públicos da Amazon: Basta clicar em Alocar.
 
 3.4-Depois da criação, selecione o IP na lista, clique em Ações no menu superior e depois em Associar endereço IP elástico:
 
-3.5-Selecione a instância EC2 criada anteriormente: Depois de selecionar a instância será preciso selecionar o endereço IP privado, que será sugerido pela própria plataforma, bastando confirmar:
+3.5-Selecione a instância EC2 criada anteriormente: 
 
-3.6-Marque a opção permitir que o endereço IP elástico seja reassociado e clique em Associar.
+3.6-Depois de selecionar a instância será preciso selecionar o endereço IP privado, que será sugerido pela própria plataforma, bastando confirmar:
+
+3.7-Marque a opção permitir que o endereço IP elástico seja reassociado e clique em Associar.
  ![image](https://github.com/AlonsoNeto01/Projeto-CompassAWS/assets/164195128/f61d37d8-2390-4353-8986-eaf2dfbf120d)
 
 
+
 4-Liberar as portas de comunicação para acesso público: (22/TCP, 111/TCP e UDP, 2049/TCP/UDP, 80/TCP, 443/TCP).
+
+
 
 4.1-Na página do serviço EC2, no menu lateral esquerdo, em Rede e Segurança, clique em Security groups; Selecione o grupo de segurança que foi criado com a instância EC2;
 
 4.2-Clique em Regras de entrada, na parte inferior, e depois, do lado direito da tela, em Editar regras de entrada;
 
-4.3-Por padrão, já temos uma regra de entrada, do Tipo SSH, no Intervalo de portas 22, Protocolo TCP. Essa regra será mantida;
+4.3-Por padrão, já temos uma regra de entrada, do Tipo SSH, no Intervalo de portas 22, Protocolo TCP. Essa regra será mantida:
 
-4.4-Clique em Adicionar regras. Agora iremos acrescentar a liberação de outras portas, além da 22 que já consta, conforme indicado na tabela abaixo:
- ![image](https://github.com/AlonsoNeto01/Projeto-CompassAWS/assets/164195128/8c55ecee-396a-4231-8c03-c970a3c1e788)
+4.4 - Selecione a opção para incluir novas regras. Vamos agora adicionar a abertura de portas adicionais, além da porta 22 já existente, conforme descrito na tabela abaixo: 
+![image](https://github.com/AlonsoNeto01/Projeto-CompassAWS/assets/164195128/8c55ecee-396a-4231-8c03-c970a3c1e788)
+
+
 
 Requisitos no linux:
 
+
+
 1-Configurar o NFS entregue;
 
-1.1-Para configurarmos um servidor NFS na máquina Linux nos próximos passos, vamos utilizar o serviço EFS da própria AWS. Antes, vamos configurar um grupo de segurança que será utilizada para a rede do EFS mais adiante.
+
+
+1.1-Para preparar um servidor NFS em um sistema Linux nas etapas seguintes, iremos empregar o serviço EFS fornecido pela AWS. Primeiramente, vamos configurar um grupo de segurança que será utilizado para a rede do EFS posteriormente.
 
 1.2-Vá até o Painel EC2 da AWS e clique em Security groups:
 
@@ -76,11 +101,15 @@ Requisitos no linux:
 1.6-Em Regras de entrada adicione uma nova regra seguindo o modelo abaixo:
  ![image](https://github.com/AlonsoNeto01/Projeto-CompassAWS/assets/164195128/abeeace7-213f-4cf0-a770-18011d40e0ba)
 
-1.7-Quando for escolher o campo Origem, escolha a opção Personalizado e, na caixa ao lado, role a barra até encontrar o grupo de segurança que foi criado para a instância EC2 que vamos acessar. Dessa forma, os dois grupos de segurança estarão conectados, cada um com seu objetivo:
+1.7-Ao selecionar o campo de Origem, opte pela alternativa Personalizado e, na caixa adjacente, desloque a barra até localizar o conjunto de segurança criado para a instância EC2 que estamos prestes a acessar. Isso garantirá a conexão entre os dois conjuntos de segurança, cada um cumprindo sua finalidade específica:
 
 1.8-Clique em Criar grupo de segurança para finalizar.
 
+
+
 2-Criar um diretorio dentro do filesystem do NFS com seu nome;
+
+
 
 2.1-No console AWS, navegue até o serviço de EFS:
 
@@ -99,21 +128,24 @@ Requisitos no linux:
 2.8-A AWS já nos apresenta comandos definidos de acordo com as opções escolhidas. Aqui, vamos utilizar a montagem via DNS usando o cliente do NFS. Copie-o e salve em um bloco de notas, pois irá precisar dele mais adiante. O comando segue o seguinte modelo: ”sudo mount -t nfs4 -o nfsvers=4.1,rsize=1048576,wsize=1048576,hard,timeo=600,retrans=2 [DNS do EFS]:/ [caminho local]”:
 
 
-#Como estou usando o terminal da AWS ele faz a conexão direta via SSH.#
+#Como estou usando o terminal da AWS, ele faz a conexão direta via SSH.#
 
 
-2.9-A partir de agora nossas ações serão feitas no terminal Linux da instância EC2.Caso necessário, entre com o comando “sudo su” para ganhar privilégios administrativos:
-Execute o comande de atualização do sistema “sudo yum update -y” antes de iniciar instalações, para garantir que serão sempre as versões mais atualizadas dos arquivos Linux que rodarão:
+2.9-De agora em diante, iremos realizar nossas ações no terminal Linux da instância EC2.Caso necessário, entre com o comando “sudo su” para ganhar privilégios administrativos:
 
-2.10-Com o comando “sudo yum install -y amazon-efs-utils” instale o pacote para suporte ao NFS. É um protocolo que permite compartilhar diretórios e arquivos entre sistemas operacionais em uma rede:
+2.10-Execute o comando de atualização do sistema “sudo yum update -y” antes de iniciar instalações, para garantir que serão sempre as versões mais atualizadas dos arquivos Linux que rodarão:
 
-2.11-Utilize o comando “sudo mkdir /mnt/efs” para criar um diretório local que servirá como ponto de montagem:
+2.11-Com o comando “sudo yum install -y amazon-efs-utils” instale o pacote para suporte ao NFS. É um protocolo que permite compartilhar diretórios e arquivos entre sistemas operacionais em uma rede:
 
-2.12-Agora vamos montar o sistema de arquivos. Para isso, é preciso utilizar o comando que foi copiado anteriormente, “sudo mount -t nfs4 -o nfsvers=4.1,rsize=1048576,wsize=1048576,hard,timeo=600,retrans=2 [DNS do EFS]:/ [caminho local]”, lembrando que cada um terá o seu próprio DNS, disponibilizado nos detalhes do serviço na AWS, e caminho local, que aqui foi nomeado como /mnt/efs.
+2.12-Utilize o comando “sudo mkdir /mnt/efs” para criar um diretório local que servirá como ponto de montagem:
+
+2.13-Agora vamos criar a estrutura de pastas. Para isso, será necessário usar o comando que copiamos antes, “sudo mount -t nfs4 -o nfsvers=4.1,rsize=1048576,wsize=1048576,hard,timeo=600,retrans=2 [DNS do EFS]:/ [caminho local]”. Cada pessoa terá seu próprio DNS, que será fornecido nos detalhes do serviço na AWS, e caminho local, que aqui foi nomeado como /mnt/efs.
 
 
 
 3-Subir um apache no servidor - o apache deve estar online e rodando;
+
+
 
 3.1-Atualize os pacotes do sistema com o comando "sudo yum update -y":
 
@@ -127,21 +159,24 @@ Execute o comande de atualização do sistema “sudo yum update -y” antes de 
 3.5-Verifique se o apache está em execução através do comando “sudo systemctl status httpd”:
  ![image](https://github.com/AlonsoNeto01/Projeto-CompassAWS/assets/164195128/f1ef77df-cac5-4ac7-81f5-922d4db01081)
 
-O Apache já vem com uma página inicial padrão que pode ser acessada através da digitação do IP público na barra de endereço de um navegador. Mas também é possível editar essa página HTML para que exiba o que você quiser. Isso é feito a partir de um arquivo index que pode ser criado dentro do diretório do Apache:
+O servidor Apache inclui automaticamente uma página inicial que pode ser visualizada ao digitar o endereço IP público em um navegador. Mas também é possível editar essa página HTML para que exiba o que você quiser. Isso é feito a partir de um arquivo index que pode ser criado dentro do diretório do Apache:
  ![image](https://github.com/AlonsoNeto01/Projeto-CompassAWS/assets/164195128/f037074b-b5a4-48dd-a0ee-1f146401c0de)
 
 3.6-Para criar/editar esse arquivo, digite o comando “sudo nano index.html”. O arquivo HTML que você digitar nesse documento é o que será mostrado na página acessada pelo IP público. Veja a seguir um exemplo de documento HTML para o serviço:
  ![image](https://github.com/AlonsoNeto01/Projeto-CompassAWS/assets/164195128/1f078b72-2854-4f41-a6f9-14a9b1a4bb8b)
 
-3.7-Para salvar o documento no editor nano, aperte ctrl+x, depois y e confirme apertando enter:
+3.7-Para salvar o documento no editor nano, aperte "ctrl+x", depois "y" e confirme apertando "enter":
 
 3.8-Para acessar a página e ver se funcionou, basta colar o IP público da instância (informação disponível nos detalhes da instância na AWS) na barra de endereço de um navegador:
  ![image](https://github.com/AlonsoNeto01/Projeto-CompassAWS/assets/164195128/8581d34a-7a89-4b03-94a8-6cb3b22c6435)
+
+
 
 4-Criar um script que valide se o serviço esta online e envie o resultado da validação para o seu diretorio no nfs. O script deve conter - Data HORA + nome do serviço + Status + mensagem personalizada de ONLINE ou offline;
 
 Para criar um script será necessário utilizar um editor de texto (utilizaremos o nano) e, ao final do nome do arquivo, devemos atribuir a extensão .sh. Devemos lembrar que, para essa atividade, o script deve conter data, hora, nome do serviço, status e mensagem personalizada de ONLINE ou OFFLINE.
 O script também deve gerar 2 arquivos de saída: um para o serviço online e outro para o serviço offline.
+
 
 4.1-Execute o comando “nano service_status.sh” para criar e abrir o arquivo do script. É importante criar o script dentro do diretório EFS. Aqui vamos salvá-lo no caminho /mnt/efs/Alonso:
 
@@ -160,9 +195,11 @@ Esse documento pode ser lido com o comando cat + nome do documento: “cat httpd
 Note que o documento informa a data e a hora em que a verificação foi feita, assim como o nome do serviço verificado e uma mensagem indicando que o mesmo está online.
 
 
+
 5-O script deve gerar 2 arquivos de saida: 1 para o serviço online e 1 para o serviço OFFLINE. Preparar a execução automatizada do script a cada 5 minutos.
 
 Para o agendamento da execução do script vamos utilizar o comando crontab. Normalmente o crontab abre um arquivo com o programa vi de edição de texto. Sendo o vi não muito prático, é possível modificar para que a abertura ocorra com o nano, muito mais intuitivo e semelhante aos editores de texto convencionais.
+
 
 5.1-Digite o comando “EDITOR=nano crontab -e”, para que o nano abra o arquivo crontab:
 
