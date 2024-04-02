@@ -55,5 +55,24 @@ Requisitos no linux:
 1.6-Em Regras de entrada adicione uma nova regra seguindo o modelo abaixo:
  ![image](https://github.com/AlonsoNeto01/Projeto-CompassAWS/assets/164195128/abeeace7-213f-4cf0-a770-18011d40e0ba)
 
+1.7-Quando for escolher o campo Origem, escolha a opção Personalizado e, na caixa ao lado, role a barra até encontrar o grupo de segurança que foi criado para a instância EC2 que vamos acessar. Dessa forma, os dois grupos de segurança estarão conectados, cada um com seu objetivo:
+1.8-Clique em Criar grupo de segurança para finalizar.
+
+2-Criar um diretorio dentro do filesystem do NFS com seu nome;
+
+2.1-No console AWS, navegue até o serviço de EFS:
+2.2-No menu lateral esquerdo, clique em Sistemas de arquivos e, na sequência, em Criar sistema de arquivos:
+2.3-Adicione um nome para o sistema de arquivos(no caso utilizaremos meu nome) e selecione a opção Personalizar:
+Marque a opção One zone e selecione a mesma zona de disponibilidade em que sua instância foi criada e avance: Mantenha as opções pré-definidas, altere apenas o grupo de segurança para o grupo que criamos para o serviço EFS: Revise as informações e clique em Criar para terminar: Na lista de sistemas criados, abra o sistema de arquivos recém-feito e clique no botão Anexar para visualizar as opções de montagem (IP ou DNS):
+A AWS já nos apresenta comandos definidos de acordo com as opções escolhidas. Aqui, vamos utilizar a montagem via DNS usando o cliente do NFS. Copie-o e salve em um bloco de notas, pois irá precisar dele mais adiante. O comando segue o seguinte modelo: ”sudo mount -t nfs4 -o nfsvers=4.1,rsize=1048576,wsize=1048576,hard,timeo=600,retrans=2 [DNS do EFS]:/ [caminho local]”:
+
+
+Como estou usando o terminal da AWS ele faz a conexão direta via SSH.
+
+
+A partir de agora nossas ações serão feitas no terminal Linux da instância EC2.Caso necessário, entre com o comando “sudo su” para ganhar privilégios administrativos:
+Execute o comande de atualização do sistema “sudo yum update -y” antes de iniciar instalações, para garantir que serão sempre as versões mais atualizadas dos arquivos Linux que rodarão:
+Com o comando “sudo yum install -y amazon-efs-utils” instale o pacote para suporte ao NFS. É um protocolo que permite compartilhar diretórios e arquivos entre sistemas operacionais em uma rede:
+Utilize o comando “sudo mkdir /mnt/efs” para criar um diretório local que servirá como ponto de montagem:
 
 
