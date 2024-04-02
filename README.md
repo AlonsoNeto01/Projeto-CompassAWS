@@ -4,7 +4,7 @@ Requisitos AWS:
 #
 #
 
-1-Gerar uma chave pública para acesso ao ambiente;
+# 1-Gerar uma chave pública para acesso ao ambiente;
 #
 #
 
@@ -15,7 +15,7 @@ Requisitos AWS:
 #
 #
 
-2-Criar 1 instância EC2 com o sistema operacional Amazon Linux 2 (Família t3.small, 16 GB SSD);
+# 2-Criar 1 instância EC2 com o sistema operacional Amazon Linux 2 (Família t3.small, 16 GB SSD);
 #
 #
 
@@ -44,7 +44,7 @@ Requisitos AWS:
 #
 #
 
-3-Gerar 1 elastic IP e anexar à instância EC2;
+# 3-Gerar 1 elastic IP e anexar à instância EC2;
 #
 #
 
@@ -65,7 +65,7 @@ Requisitos AWS:
 #
 #
 
-4-Liberar as portas de comunicação para acesso público: (22/TCP, 111/TCP e UDP, 2049/TCP/UDP, 80/TCP, 443/TCP).
+# 4-Liberar as portas de comunicação para acesso público: (22/TCP, 111/TCP e UDP, 2049/TCP/UDP, 80/TCP, 443/TCP).
 #
 #
 
@@ -80,11 +80,11 @@ Requisitos AWS:
 #
 #
 
-Requisitos no linux:
+# Requisitos no linux:
 #
 #
 
-1-Configurar o NFS entregue;
+# 1-Configurar o NFS entregue;
 #
 #
 
@@ -107,7 +107,7 @@ Requisitos no linux:
 #
 #
 
-2-Criar um diretorio dentro do filesystem do NFS com seu nome;
+# 2-Criar um diretorio dentro do filesystem do NFS com seu nome;
 #
 #
 
@@ -128,7 +128,7 @@ Requisitos no linux:
 2.8-A AWS já nos apresenta comandos definidos de acordo com as opções escolhidas. Aqui, vamos utilizar a montagem via DNS usando o cliente do NFS. Copie-o e salve em um bloco de notas, pois irá precisar dele mais adiante. O comando segue o seguinte modelo: ”sudo mount -t nfs4 -o nfsvers=4.1,rsize=1048576,wsize=1048576,hard,timeo=600,retrans=2 [DNS do EFS]:/ [caminho local]”:
 
 
-#Como estou usando o terminal da AWS, ele faz a conexão direta via SSH.#
+## #Como estou usando o terminal da AWS, ele faz a conexão direta via SSH.#
 
 
 2.9-De agora em diante, iremos realizar nossas ações no terminal Linux da instância EC2.Caso necessário, entre com o comando “sudo su” para ganhar privilégios administrativos:
@@ -143,7 +143,7 @@ Requisitos no linux:
 #
 
 #
-3-Subir um apache no servidor - o apache deve estar online e rodando;
+# 3-Subir um apache no servidor - o apache deve estar online e rodando;
 #
 
 #
@@ -172,7 +172,7 @@ O servidor Apache inclui automaticamente uma página inicial que pode ser visual
 #
 #
 
-4-Criar um script que valide se o serviço esta online e envie o resultado da validação para o seu diretorio no nfs. O script deve conter - Data HORA + nome do serviço + Status + mensagem personalizada de ONLINE ou offline;
+# 4-Criar um script que valide se o serviço esta online e envie o resultado da validação para o seu diretorio no nfs. O script deve conter - Data HORA + nome do serviço + Status + mensagem personalizada de ONLINE ou offline;
 #
 Para criar um script será necessário utilizar um editor de texto (utilizaremos o nano) e, ao final do nome do arquivo, devemos atribuir a extensão .sh. Devemos lembrar que, para essa atividade, o script deve conter data, hora, nome do serviço, status e mensagem personalizada de ONLINE ou OFFLINE.
 O script também deve gerar 2 arquivos de saída: um para o serviço online e outro para o serviço offline.
@@ -196,7 +196,7 @@ Note que o documento informa a data e a hora em que a verificação foi feita, a
 #
 #
 
-5-O script deve gerar 2 arquivos de saida: 1 para o serviço online e 1 para o serviço OFFLINE. Preparar a execução automatizada do script a cada 5 minutos.
+# 5-O script deve gerar 2 arquivos de saida: 1 para o serviço online e 1 para o serviço OFFLINE. Preparar a execução automatizada do script a cada 5 minutos.
 #
 Para o agendamento da execução do script vamos utilizar o comando crontab. Normalmente o crontab abre um arquivo com o programa vi de edição de texto. Sendo o vi não muito prático, é possível modificar para que a abertura ocorra com o nano, muito mais intuitivo e semelhante aos editores de texto convencionais.
 #
@@ -223,10 +223,12 @@ Ainda, é possível verificarmos que os arquivos .txt foram criados dentro do di
 #
 #
 
-Para as referências usadas na condução da atividade, consulte a documentação oficial da Amazon AWS disponível em https://docs.aws.amazon.com/pt_br/ e o Guia Linux da Unirio acessível via https://guialinux.uniriotec.br/ .
+## Para as referências usadas na condução da atividade, consulte a documentação oficial da Amazon AWS disponível em https://docs.aws.amazon.com/pt_br/ e o Guia Linux da Unirio acessível via https://guialinux.uniriotec.br/ .
 #
 #
 
-Este documento foi desenvolvido por Alonso Sales Moreira Neto com base em atividades realizadas e propostas no contexto do Programa de Bolsas e Estágios AWS e DecSecOps do Compass UOL. Ao longo do evento reservamos explicitamente alguns endereços IP, o que não é uma boa prática de segurança, no entanto , as máquinas criadas e usadas ​​para este evento já não estão disponíveis, estas máquinas foram criadas especificamente para realizar tarefas e projeções.
+## Este documento foi desenvolvido por Alonso Sales Moreira Neto com base em atividades realizadas e propostas no contexto do Programa de Bolsas e Estágios AWS e DecSecOps do Compass 
+## UOL. Ao longo do evento reservamos explicitamente alguns endereços IP, o que não é uma boa prática de segurança, no entanto , as máquinas criadas e usadas ​​para este evento já não estão 
+## disponíveis, estas máquinas foram criadas especificamente para realizar tarefas e projeções.
 
 ![image](https://github.com/AlonsoNeto01/Projeto-CompassAWS/assets/164195128/943f8306-854e-48f3-8461-e8ab46a53bf1)
