@@ -221,14 +221,12 @@ Ainda, é possível verificarmos que os arquivos .txt foram criados dentro do di
 •	E no final de tudo encerrar a instância!!! 
 ![image](https://github.com/AlonsoNeto01/Projeto-CompassAWS/assets/164195128/11a2a804-480d-465d-8e15-bf740c2d039f)
 #
-#
+
 
 ## Para as referências usadas na condução da atividade, consulte a documentação oficial da Amazon AWS disponível em https://docs.aws.amazon.com/pt_br/ e o Guia Linux da Unirio acessível via https://guialinux.uniriotec.br/ .
 #
-#
 
-## Este documento foi desenvolvido por Alonso Sales Moreira Neto com base em atividades realizadas e propostas no contexto do Programa de Bolsas e Estágios AWS e DecSecOps do Compass 
-## UOL. Ao longo do evento reservamos explicitamente alguns endereços IP, o que não é uma boa prática de segurança, no entanto , as máquinas criadas e usadas ​​para este evento já não estão 
-## disponíveis, estas máquinas foram criadas especificamente para realizar tarefas e projeções.
+
+### Este documento foi desenvolvido por Alonso Sales Moreira Neto com base em atividades realizadas e propostas no contexto do Programa de Bolsas e Estágios AWS e DecSecOps do Compass UOL. Ao longo do evento reservamos explicitamente alguns endereços IP, o que não é uma boa prática de segurança, no entanto , as máquinas criadas e usadas ​​para este evento já não estão disponíveis, estas máquinas foram criadas especificamente para realizar tarefas e projeções.
 
 ![image](https://github.com/AlonsoNeto01/Projeto-CompassAWS/assets/164195128/943f8306-854e-48f3-8461-e8ab46a53bf1)
