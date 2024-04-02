@@ -228,3 +228,5 @@ Para as referências usadas na condução da atividade, consulte a documentaçã
 #
 #
 Este documento foi desenvolvido por Alonso Sales Moreira Neto com base em atividades realizadas e propostas no contexto do Programa de Bolsas e Estágios AWS e DecSecOps do Compass UOL. Ao longo do evento reservamos explicitamente alguns endereços IP, o que não é uma boa prática de segurança, no entanto , as máquinas criadas e usadas ​​para este evento já não estão disponíveis, estas máquinas foram criadas especificamente para realizar tarefas e projeções.
+
+![image](https://github.com/AlonsoNeto01/Projeto-CompassAWS/assets/164195128/bcd5f8e9-989d-4d1a-b386-d839ec161a63)
