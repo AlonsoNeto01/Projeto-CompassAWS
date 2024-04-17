@@ -209,10 +209,10 @@ Salve o arquivo e feche o editor:
 
 5.3-Para verificar se a automatização está funcionando, é preciso abrir os arquivos .txt que foram programados para serem criados e guardar as informações da verificação do serviço online e offline. Como a automatização faz com que a verificação programada pelo script ocorra a cada 5 minutos, dê algum tempo para que o arquivo .txt seja atualizado algumas vezes:
 
-5.4-Na imagem abaixo temos a demonstração do arquivo httpd-online.txt exibindo as informações da validação online após o crontab realizar a automatização algumas vezes:
+5.4-Na imagem abaixo temos a demonstração do arquivo "cat httpd-online.txt" exibindo as informações da validação online após o crontab realizar a automatização algumas vezes:
 ![image](https://github.com/AlonsoNeto01/Projeto-CompassAWS/assets/164195128/869072a4-056d-4ef3-a504-5e78e299a803)
 
-5.5-Para fazermos a confirmação de que o script realiza a verificação do serviço offline é preciso interromper o Apache com o comando sudo systemctl stop httpd. Dessa forma, basta aguardar alguns minutos para que o crontap continue a executar o script a cada 5 minutos e poderemos ver a criação do arquivo httpd-offline.txt, que exibe os momentos em que o status do serviço estava offline, conforme imagem abaixo:
+5.5-Para fazermos a confirmação de que o script realiza a verificação do serviço offline é preciso interromper o Apache com o comando sudo systemctl stop httpd. Dessa forma, basta aguardar alguns minutos para que o crontap continue a executar o script a cada 5 minutos e poderemos ver a criação do arquivo "cat httpd-offline.txt", que exibe os momentos em que o status do serviço estava offline, conforme imagem abaixo:
 ![image](https://github.com/AlonsoNeto01/Projeto-CompassAWS/assets/164195128/8a871b1f-0365-4572-a3fa-7c643b35d100)
 
 Ainda, é possível verificarmos que os arquivos .txt foram criados dentro do diretório indicado no script:
